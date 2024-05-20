@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TruckRepository extends JpaRepository<Truck, Integer> {
+    public Truck findByFleetIdentificationNumber(int fleetIdentificationNumber);
 }

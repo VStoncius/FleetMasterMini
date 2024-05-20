@@ -1,46 +1,26 @@
-package lt.fleetmaster.Mini.domain;
+package lt.fleetmaster.Mini.DTO;
 
-import jakarta.persistence.*;
-import lt.fleetmaster.Mini.DTO.TrailerDTO;
+import lt.fleetmaster.Mini.domain.Trailer;
 
-@Entity
-public class Trailer {
+public class TrailerDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    @Column(nullable = false)
     private String model;
-
-    @Column(nullable = false)
     private int volume;
-
-    @Column(nullable = false, unique = true)
     private int fleetIdentificationNumber;
+    private int assignedTruck;
 
-    @OneToOne(mappedBy = "assignedTrailer", fetch = FetchType.LAZY)
-    private Truck assignedTruck;
-
-    public Trailer(String model, int volume, int fleetIdentificationNumber, Truck assignedTruck) {
+    public TrailerDTO(String model, int volume, int fleetIdentificationNumber, int assignedTruck) {
         this.model = model;
         this.volume = volume;
         this.fleetIdentificationNumber = fleetIdentificationNumber;
         this.assignedTruck = assignedTruck;
     }
 
-    public Trailer(TrailerDTO trailer) {
+    public TrailerDTO(Trailer trailer) {
         this.model = trailer.getModel();
         this.volume = trailer.getVolume();
         this.fleetIdentificationNumber = trailer.getFleetIdentificationNumber();
-        this.assignedTruck = null;
-    }
-
-    public Trailer() {
-    }
-
-    public int getId() {
-        return id;
+        this.assignedTruck = trailer.getAssignedTruck().getFleetIdentificationNumber();
     }
 
     public String getModel() {
@@ -67,11 +47,11 @@ public class Trailer {
         this.fleetIdentificationNumber = fleetIdentificationNumber;
     }
 
-    public Truck getAssignedTruck() {
+    public int getAssignedTruck() {
         return assignedTruck;
     }
 
-    public void setAssignedTruck(Truck assignedTruck) {
+    public void setAssignedTruck(int assignedTruck) {
         this.assignedTruck = assignedTruck;
     }
 }

@@ -7,35 +7,38 @@ import java.util.Set;
 
 public class TruckDTO {
 
-    private String fleetIdentificationNumber;
-    private Integer assignedTrailerNumber;
+    private int fleetIdentificationNumber;
+    private String model;
+    private int assignedTrailerNumber;
     private Set<String> drivers;
 
-    public TruckDTO(String fleetIdentificationNumber, Integer assignedTrailerNumber, Set<String> drivers) {
+    public TruckDTO(int fleetIdentificationNumber, String model, int assignedTrailerNumber, Set<String> drivers) {
         this.fleetIdentificationNumber = fleetIdentificationNumber;
+        this.model = model;
         this.assignedTrailerNumber = assignedTrailerNumber;
         this.drivers = drivers;
     }
 
     public TruckDTO(Truck truck) {
         this.fleetIdentificationNumber = truck.getFleetIdentificationNumber();
+        this.model = truck.getModel();
         this.assignedTrailerNumber = truck.getAssignedTrailer().getFleetIdentificationNumber();
         this.drivers = Utils.convertDriverSet(truck.getDrivers());
     }
 
-    public String getFleetIdentificationNumber() {
+    public int getFleetIdentificationNumber() {
         return fleetIdentificationNumber;
     }
 
-    public void setFleetIdentificationNumber(String fleetIdentificationNumber) {
+    public void setFleetIdentificationNumber(int fleetIdentificationNumber) {
         this.fleetIdentificationNumber = fleetIdentificationNumber;
     }
 
-    public Integer getAssignedTrailerNumber() {
+    public int getAssignedTrailerNumber() {
         return assignedTrailerNumber;
     }
 
-    public void setAssignedTrailerNumber(Integer assignedTrailerNumber) {
+    public void setAssignedTrailerNumber(int assignedTrailerNumber) {
         this.assignedTrailerNumber = assignedTrailerNumber;
     }
 
@@ -45,5 +48,13 @@ public class TruckDTO {
 
     public void setDrivers(Set<String> drivers) {
         this.drivers = drivers;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }

@@ -8,32 +8,48 @@ import java.util.Set;
 public class Truck {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(nullable = false)
-    private String fleetIdentificationNumber;
+    private String model;
 
-    @OneToOne(mappedBy = "assignedTruck", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = true)
+    @Column(nullable = false, unique = true)
+    private int fleetIdentificationNumber;
+
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "trailer_id", referencedColumnName = "id")
     private Trailer assignedTrailer;
 
-    @OneToMany(mappedBy = "truck", orphanRemoval= false)
+    @OneToMany(mappedBy = "truck")
     private Set<Driver> drivers;
 
-    public Truck(String fleetIdentificationNumber) {
+    public Truck(String model, int fleetIdentificationNumber, Trailer assignedTrailer, Set<Driver> drivers) {
+        this.model = model;
         this.fleetIdentificationNumber = fleetIdentificationNumber;
+        this.assignedTrailer = assignedTrailer;
+        this.drivers = drivers;
+    }
+
+    public Truck(String model, int fleetIdentificationNumber) {
+        this.model = model;
+        this.fleetIdentificationNumber = fleetIdentificationNumber;
+        this.assignedTrailer = null;
+        this.drivers = null;
+    }
+
+    public Truck() {
     }
 
     public int getId() {
         return id;
     }
 
-    public String getFleetIdentificationNumber() {
+    public int getFleetIdentificationNumber() {
         return fleetIdentificationNumber;
     }
 
-    public void setFleetIdentificationNumber(String fleetIdentificationNumber) {
+    public void setFleetIdentificationNumber(int fleetIdentificationNumber) {
         this.fleetIdentificationNumber = fleetIdentificationNumber;
     }
 
@@ -51,5 +67,13 @@ public class Truck {
 
     public void setDrivers(Set<Driver> drivers) {
         this.drivers = drivers;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }

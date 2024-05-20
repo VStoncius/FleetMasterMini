@@ -9,3 +9,5 @@ services:
       POSTGRES_PASSWORD: 'superSecretPassw0rd'
       POSTGRES_DB: 'fleet'
 
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/

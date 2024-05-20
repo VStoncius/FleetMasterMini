@@ -1,9 +1,6 @@
 package lt.fleetmaster.Mini.DTO;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lt.fleetmaster.Mini.domain.Truck;
+import lt.fleetmaster.Mini.domain.Driver;
 
 public class DriverDTO {
 
@@ -11,14 +8,22 @@ public class DriverDTO {
     private String middleName;
     private String lastName;
     private String personalIdentification;
-    private String truckIdentificationNumber;
+    private int truckIdentificationNumber;
 
-    public DriverDTO(String firstName, String middleName, String lastName, String personalIdentification, String truckIdentificationNumber) {
+    public DriverDTO(String firstName, String middleName, String lastName, String personalIdentification, int truckIdentificationNumber) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.personalIdentification = personalIdentification;
         this.truckIdentificationNumber = truckIdentificationNumber;
+    }
+
+    public DriverDTO(Driver driver) {
+        this.firstName = driver.getFirstName();
+        this.middleName = driver.getMiddleName();
+        this.lastName = driver.getLastName();
+        this.personalIdentification = driver.getPersonalIdentification();
+        this.truckIdentificationNumber = driver.getTruck().getFleetIdentificationNumber();
     }
 
     public String getFirstName() {
@@ -53,11 +58,11 @@ public class DriverDTO {
         this.personalIdentification = personalIdentification;
     }
 
-    public String getTruckIdentificationNumber() {
+    public int getTruckIdentificationNumber() {
         return truckIdentificationNumber;
     }
 
-    public void setTruckIdentificationNumber(String truckIdentificationNumber) {
+    public void setTruckIdentificationNumber(int truckIdentificationNumber) {
         this.truckIdentificationNumber = truckIdentificationNumber;
     }
 }

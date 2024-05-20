@@ -16,11 +16,11 @@ public class TruckController {
 
     @GetMapping("/find")
     public ResponseEntity<TruckDTO> getTruckById(@RequestParam int id) {
-        return new ResponseEntity<TruckDTO>(truckService.getTruckById(id), HttpStatus.OK);
+        return new ResponseEntity<TruckDTO>(truckService.getTruckDTOByFleetNumber(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<TruckDTO> createTruck(@RequestBody TruckDTO truck) {
-        return new ResponseEntity<TruckDTO>(new TruckDTO(truckService.saveTruck(truck)), HttpStatus.CREATED);
+    public ResponseEntity<String> createTruck(@RequestBody TruckDTO truck) {
+        return new ResponseEntity<>(truckService.saveTruck(truck), HttpStatus.CREATED);
     }
 }

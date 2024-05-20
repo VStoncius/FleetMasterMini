@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TrailerRepository extends JpaRepository<Trailer, Integer> {
+    public Trailer findByFleetIdentificationNumber(int fleetIdentificationNumber);
 }

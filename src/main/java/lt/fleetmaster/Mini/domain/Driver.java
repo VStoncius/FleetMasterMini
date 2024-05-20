@@ -1,24 +1,22 @@
 package lt.fleetmaster.Mini.domain;
 
 import jakarta.persistence.*;
+import lt.fleetmaster.Mini.DTO.DriverDTO;
 
 @Entity
 public class Driver {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(nullable = false)
     private String firstName;
 
     @Column(nullable = true)
     private String middleName;
 
-    @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
     private String personalIdentification;
 
     @ManyToOne
@@ -32,6 +30,18 @@ public class Driver {
         this.personalIdentification = personalIdentification;
         this.truck = truck;
     }
+
+    public Driver(DriverDTO driver) {
+        this.firstName = driver.getFirstName();
+        this.middleName = driver.getMiddleName();
+        this.lastName = driver.getLastName();
+        this.personalIdentification = driver.getPersonalIdentification();
+        this.truck = null;
+    }
+
+    public Driver() {
+    }
+
 
     public int getId() {
         return id;
