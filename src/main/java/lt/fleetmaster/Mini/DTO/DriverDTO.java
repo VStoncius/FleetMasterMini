@@ -23,7 +23,6 @@ public class DriverDTO {
         this.middleName = driver.getMiddleName();
         this.lastName = driver.getLastName();
         this.personalIdentification = driver.getPersonalIdentification();
-        this.truckIdentificationNumber = driver.getTruck().getFleetIdentificationNumber();
     }
 
     public String getFirstName() {

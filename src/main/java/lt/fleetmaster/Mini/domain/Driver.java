@@ -17,18 +17,14 @@ public class Driver {
 
     private String lastName;
 
+    @Column(unique = true)
     private String personalIdentification;
 
-    @ManyToOne
-    @JoinColumn(name="truck_id")
-    private Truck truck;
-
-    public Driver(String firstName, String middleName, String lastName, String personalIdentification, Truck truck) {
+    public Driver(String firstName, String middleName, String lastName, String personalIdentification) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.personalIdentification = personalIdentification;
-        this.truck = truck;
     }
 
     public Driver(DriverDTO driver) {
@@ -36,7 +32,6 @@ public class Driver {
         this.middleName = driver.getMiddleName();
         this.lastName = driver.getLastName();
         this.personalIdentification = driver.getPersonalIdentification();
-        this.truck = null;
     }
 
     public Driver() {
@@ -77,13 +72,5 @@ public class Driver {
 
     public void setPersonalIdentification(String personalIdentification) {
         this.personalIdentification = personalIdentification;
-    }
-
-    public Truck getTruck() {
-        return truck;
-    }
-
-    public void setTruck(Truck truck) {
-        this.truck = truck;
     }
 }

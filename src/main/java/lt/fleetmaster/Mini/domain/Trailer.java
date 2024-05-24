@@ -19,21 +19,16 @@ public class Trailer {
     @Column(nullable = false, unique = true)
     private int fleetIdentificationNumber;
 
-    @OneToOne(mappedBy = "assignedTrailer", fetch = FetchType.LAZY)
-    private Truck assignedTruck;
-
-    public Trailer(String model, int volume, int fleetIdentificationNumber, Truck assignedTruck) {
+    public Trailer(String model, int volume, int fleetIdentificationNumber) {
         this.model = model;
         this.volume = volume;
         this.fleetIdentificationNumber = fleetIdentificationNumber;
-        this.assignedTruck = assignedTruck;
     }
 
     public Trailer(TrailerDTO trailer) {
         this.model = trailer.getModel();
         this.volume = trailer.getVolume();
         this.fleetIdentificationNumber = trailer.getFleetIdentificationNumber();
-        this.assignedTruck = null;
     }
 
     public Trailer() {
@@ -65,13 +60,5 @@ public class Trailer {
 
     public void setFleetIdentificationNumber(int fleetIdentificationNumber) {
         this.fleetIdentificationNumber = fleetIdentificationNumber;
-    }
-
-    public Truck getAssignedTruck() {
-        return assignedTruck;
-    }
-
-    public void setAssignedTruck(Truck assignedTruck) {
-        this.assignedTruck = assignedTruck;
     }
 }

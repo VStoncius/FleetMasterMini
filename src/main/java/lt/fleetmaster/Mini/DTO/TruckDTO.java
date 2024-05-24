@@ -1,37 +1,40 @@
 package lt.fleetmaster.Mini.DTO;
 
+import lt.fleetmaster.Mini.domain.Trailer;
 import lt.fleetmaster.Mini.domain.Truck;
 import lt.fleetmaster.Mini.utils.Utils;
 
 import java.util.Set;
 
+import static java.util.Objects.requireNonNullElse;
+
 public class TruckDTO {
 
-    private int fleetIdentificationNumber;
+    private int truckIdentificationNumber;
     private String model;
     private int assignedTrailerNumber;
     private Set<String> drivers;
 
-    public TruckDTO(int fleetIdentificationNumber, String model, int assignedTrailerNumber, Set<String> drivers) {
-        this.fleetIdentificationNumber = fleetIdentificationNumber;
+    public TruckDTO(int truckIdentificationNumber, String model, int assignedTrailerNumber, Set<String> drivers) {
+        this.truckIdentificationNumber = truckIdentificationNumber;
         this.model = model;
         this.assignedTrailerNumber = assignedTrailerNumber;
         this.drivers = drivers;
     }
 
     public TruckDTO(Truck truck) {
-        this.fleetIdentificationNumber = truck.getFleetIdentificationNumber();
+        this.truckIdentificationNumber = truck.getTruckIdentificationNumber();
         this.model = truck.getModel();
-        this.assignedTrailerNumber = truck.getAssignedTrailer().getFleetIdentificationNumber();
+        this.assignedTrailerNumber = requireNonNullElse(truck.getAssignedTrailer(), new Trailer()).getFleetIdentificationNumber();
         this.drivers = Utils.convertDriverSet(truck.getDrivers());
     }
 
-    public int getFleetIdentificationNumber() {
-        return fleetIdentificationNumber;
+    public int getTruckIdentificationNumber() {
+        return truckIdentificationNumber;
     }
 
-    public void setFleetIdentificationNumber(int fleetIdentificationNumber) {
-        this.fleetIdentificationNumber = fleetIdentificationNumber;
+    public void setTruckIdentificationNumber(int truckIdentificationNumber) {
+        this.truckIdentificationNumber = truckIdentificationNumber;
     }
 
     public int getAssignedTrailerNumber() {

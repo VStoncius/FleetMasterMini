@@ -15,25 +15,26 @@ public class Truck {
     private String model;
 
     @Column(nullable = false, unique = true)
-    private int fleetIdentificationNumber;
+    private int truckIdentificationNumber;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "trailer_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.DETACH,fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "trailer_id", referencedColumnName = "fleetIdentificationNumber")
     private Trailer assignedTrailer;
 
-    @OneToMany(mappedBy = "truck")
+    @OneToMany
+    @JoinColumn(name="truckIdentificationNumber")
     private Set<Driver> drivers;
 
-    public Truck(String model, int fleetIdentificationNumber, Trailer assignedTrailer, Set<Driver> drivers) {
+    public Truck(String model, int truckIdentificationNumber, Trailer assignedTrailer, Set<Driver> drivers) {
         this.model = model;
-        this.fleetIdentificationNumber = fleetIdentificationNumber;
+        this.truckIdentificationNumber = truckIdentificationNumber;
         this.assignedTrailer = assignedTrailer;
         this.drivers = drivers;
     }
 
-    public Truck(String model, int fleetIdentificationNumber) {
+    public Truck(String model, int truckIdentificationNumber) {
         this.model = model;
-        this.fleetIdentificationNumber = fleetIdentificationNumber;
+        this.truckIdentificationNumber = truckIdentificationNumber;
         this.assignedTrailer = null;
         this.drivers = null;
     }
@@ -45,12 +46,12 @@ public class Truck {
         return id;
     }
 
-    public int getFleetIdentificationNumber() {
-        return fleetIdentificationNumber;
+    public int getTruckIdentificationNumber() {
+        return truckIdentificationNumber;
     }
 
-    public void setFleetIdentificationNumber(int fleetIdentificationNumber) {
-        this.fleetIdentificationNumber = fleetIdentificationNumber;
+    public void setTruckIdentificationNumber(int truckIdentificationNumber) {
+        this.truckIdentificationNumber = truckIdentificationNumber;
     }
 
     public Trailer getAssignedTrailer() {

@@ -20,7 +20,6 @@ public class TrailerDTO {
         this.model = trailer.getModel();
         this.volume = trailer.getVolume();
         this.fleetIdentificationNumber = trailer.getFleetIdentificationNumber();
-        this.assignedTruck = trailer.getAssignedTruck().getFleetIdentificationNumber();
     }
 
     public String getModel() {
