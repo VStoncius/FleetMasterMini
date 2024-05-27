@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "fe950304-c5cf-4184-a550-7965f49c3c82",
+		"name": "Fleet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11033170"
+	},
+	"item": [
+		{
+			"name": "Create Truck",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"truckIdentificationNumber\": 2,\r\n    \"model\": \"bestest truck\",\r\n    \"assignedTrailerNumber\": 2,\r\n    \"drivers\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/trucks/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trucks",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Truck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/trucks/find?truckIdentificationNumber=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trucks",
+						"find"
+					],
+					"query": [
+						{
+							"key": "truckIdentificationNumber",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Truck",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"truckIdentificationNumber\": 3,\r\n    \"model\": \"best Truck 2\",\r\n    \"assignedTrailerNumber\": 3,\r\n    \"drivers\": [\"LT13213753\", \"LT14529873753\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/trucks/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trucks",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Truck",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/trucks/delete?truckIdentificationNumber=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trucks",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "truckIdentificationNumber",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllTrucks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/trucks/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trucks",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Driver",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"truckIdentificationNumber\": 0,\r\n    \"firstName\": \"Karolis\",\r\n    \"middleName\": null,\r\n    \"lastName\": \"Stulga\",\r\n    \"personalIdentification\": \"LT13213753\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/drivers/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drivers",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Driver",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "LT1452345612753"
+				},
+				"url": {
+					"raw": "localhost:8080/drivers/find",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drivers",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Driver",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"truckIdentificationNumber\": 0,\r\n    \"firstName\": \"Karolis\",\r\n    \"middleName\": \"Mazulis\",\r\n    \"lastName\": \"Stulga\",\r\n    \"personalIdentification\": \"LT1452345612753\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/drivers/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drivers",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Driver",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "LT1452345612753"
+				},
+				"url": {
+					"raw": "localhost:8080/drivers/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"drivers",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Trailer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fleetIdentificationNumber\": 4,\r\n    \"model\": \"best trailer\",\r\n    \"volume\": 100,\r\n    \"assignedTruck\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/trailers/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trailers",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trailer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "LT1452345612753"
+				},
+				"url": {
+					"raw": "localhost:8080/trailers/find?id=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trailers",
+						"find"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all trailers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "LT1452345612753"
+				},
+				"url": {
+					"raw": "localhost:8080/trailers/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trailers",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Trailer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fleetIdentificationNumber\": 3,\r\n    \"model\": \"best trailer\",\r\n    \"volume\": 100,\r\n    \"assignedTruck\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/trailers/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trailers",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Trailer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/trailers/delete?trailerIdentificationNumber=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trailers",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "trailerIdentificationNumber",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
