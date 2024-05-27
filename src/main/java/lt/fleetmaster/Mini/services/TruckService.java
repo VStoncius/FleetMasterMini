@@ -45,7 +45,7 @@ public class TruckService {
         truckToUpdate.setModel(truck.getModel());
         driverService.replaceDrivers(truckToUpdate, truck.getDrivers());
         trailerService.replaceTrailer(truckToUpdate, truck.getAssignedTrailerNumber());
-        truckRepo.saveAndFlush(truckToUpdate);
+        truckRepo.save(truckToUpdate);
         return "Truck updated";
     }
 

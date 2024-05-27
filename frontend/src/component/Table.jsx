@@ -3,13 +3,16 @@ import {BsFillPencilFill, BsFillTrashFill} from "react-icons/bs"
 import axios from "axios";
 
 import "./Table.css";
+import EditModal from "./EditModal";
 
 class Table extends Component {
     constructor(props){
         super(props);
         this.state = {
-            trucks: []
-        }
+            trucks: [],
+            editModalOpen: false,
+            currentTruck: null,
+        };
     }
 
     componentDidMount() {
@@ -20,9 +23,25 @@ class Table extends Component {
           })
       }
 
+    handleEditClick = (truck) => {
+        this.setState({ currentTruck: truck, editModalOpen: true });
+    };
+
+    closeEditModal = () => {
+        this.setState({editModalOpen: false, currentTruck: null });
+    };
+
+    handleSaveChanges = (updatedTruck) => {
+        const updatedTrucks = this.state.trucks.map((truck) =>
+            truck.truckIdentificationNumber === updatedTruck.truckIdentificationNumber ? updatedTruck : truck
+        );
+        this.setState({trucks: updatedTrucks, editModalOpen: false, currentTruck: null});
+    };
+
     render()
     {
-        return <div className="table-wrapper">
+        return <div>
+            <div className="table-wrapper">
             <table className="table">
                 <thead>
                     <tr>
@@ -36,14 +55,15 @@ class Table extends Component {
                 <tbody>
                     {this.state.trucks.map(truck => {
                         return (
-                        <tr>
+                        <tr key={truck.truckIdentificationNumber}>
                             <td></td>
                             <td>{truck.truckIdentificationNumber}</td>
                             <td>{truck.assignedTrailerNumber}</td>
                             <td>{truck.drivers}</td>
                             <td>
                                 <span className="actions">
-                                    <BsFillPencilFill className="edit-btn"/>
+                                    <BsFillPencilFill className="edit-btn"
+                                                onClick={() => this.handleEditClick(truck)}/>
                                     <BsFillTrashFill className="delete-btn"/>
                                 </span>
                             </td>
@@ -52,6 +72,15 @@ class Table extends Component {
                 </tbody>
             </table>
         </div> 
+        {this.state.editModalOpen && (
+                    <EditModal
+                        truck={this.state.currentTruck}
+                        closeEditModal={this.closeEditModal}
+                        saveChanges={this.handleSaveChanges}
+                    />
+                )}
+        </div>
+        
     }
 }
 

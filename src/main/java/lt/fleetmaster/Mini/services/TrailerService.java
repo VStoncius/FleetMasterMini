@@ -69,7 +69,7 @@ public class TrailerService {
         Trailer trailerToUpdate = trailerRepo.findByFleetIdentificationNumber(trailer.getFleetIdentificationNumber());
         trailerToUpdate.setModel(trailer.getModel());
         trailerToUpdate.setVolume(trailer.getVolume());
-        trailerRepo.save(trailerToUpdate);
+        trailerRepo.saveAndFlush(trailerToUpdate);
 
         return "Trailer updated";
     }
