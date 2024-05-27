@@ -6,6 +6,10 @@ import lt.fleetmaster.Mini.repositories.TruckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class TruckService {
 
@@ -27,7 +31,12 @@ public class TruckService {
     }
 
     public String saveTruck(TruckDTO truck) {
-        truckRepo.save(new Truck(truck.getModel(), truck.getTruckIdentificationNumber()));
+        Truck newTruck = new Truck(truck.getModel(), truck.getTruckIdentificationNumber());
+        if (truck.getAssignedTrailerNumber() != 0) {
+            newTruck.setAssignedTrailer(trailerService.getTrailerByReference(truck.getAssignedTrailerNumber()));
+        }
+        truckRepo.save(newTruck);
+
         return "Truck created successfully";
     }
 
@@ -46,5 +55,11 @@ public class TruckService {
         truckToDelete.setAssignedTrailer(null);
         truckRepo.delete(truckToDelete);
         return "Deleted";
+    }
+
+    public Set<TruckDTO> getAllTrucks() {
+        List<Truck> allTrucks = truckRepo.findAll();
+        Set<TruckDTO> truckSet = allTrucks.stream().map(truck -> new TruckDTO(truck)).collect(Collectors.toSet());
+        return truckSet;
     }
 }

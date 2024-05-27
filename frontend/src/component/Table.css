@@ -35,7 +35,7 @@
 }
 
 .expand {
-    width: 80%;
+    width: 100%;
 }
 
 .empty-row {
@@ -52,9 +52,11 @@
 }
 
 .delete-btn {
+    margin: 5px;
     color: #e10d05;
 }
 
 .edit-btn {
+    margin: 5px;
     color: #26bd4e;
 }

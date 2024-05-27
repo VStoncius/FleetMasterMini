@@ -51,4 +51,20 @@ public class DriverService {
             }
         return truckToUpdate;
     }
+
+    public String deleteDriver(String driverIdentification) {
+        driverRepo.delete(driverRepo.findBypersonalIdentification(driverIdentification));
+
+        return "Deleted";
+    }
+
+    public String updateDriver(DriverDTO driver) {
+        Driver driverToUpdate = driverRepo.findBypersonalIdentification(driver.getPersonalIdentification());
+        driverToUpdate.setFirstName(driver.getFirstName());
+        driverToUpdate.setLastName(driver.getLastName());
+        driverToUpdate.setMiddleName(driver.getMiddleName());
+        driverRepo.saveAndFlush(driverToUpdate);
+
+        return "Driver updated";
+    }
 }
